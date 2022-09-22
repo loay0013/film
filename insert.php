@@ -3,8 +3,15 @@ require "settings/init.php";
 
 if(!empty($_POST["data"])){
     $data = $_POST["data"];
-    $sql ="INSERT INTO Film (FilmNavn,FilmDato,FilmBas,FilmRate,FilmGenre,FilmMedvirkende,FilmTid,FilmSprog,FilmAlder,FilmOprindelsesland) values (:FilmNavn,:FilmDato,:FilmBas,:FilmRate,:FilmGenre,:FilmMedvirkende,:FilmTid,:FilmSprog,:FilmAlder,:FilmOprindelsesland)";
-    $bind=[":FilmNavn"=> $data["FilmNavn"], ":FilmDato"=> $data["FilmDato"], ":FilmBas"=> $data["FilmBas"],":FilmRate"=> $data["FilmRate"], ":FilmGenre"=> $data["FilmGenre"],":FilmMedvirkende"=> $data["FilmMedvirkende"],":FilmTid"=> $data["FilmTid"],":FilmSprog"=> $data["FilmSprog"],":FilmAlder"=> $data["FilmAlder"],":FilmOprindelsesland"=> $data["FilmOprindelsesland"]];
+    $file =$_FILES;
+    if(!empty($file["FilmImg"]["tmp_name"])){
+        move_uploaded_file($file["FilmImg"]["tmp_name"],"uplods/".basename($file["FilmImg"]["name"]));
+    }
+
+
+
+    $sql ="INSERT INTO Film (FilmNavn,FilmDato,FilmBas,FilmRate,FilmGenre,FilmMedvirkende,FilmTid,FilmSprog,FilmAlder,FilmOprindelsesland, FilmImg) values (:FilmNavn,:FilmDato,:FilmBas,:FilmRate,:FilmGenre,:FilmMedvirkende,:FilmTid,:FilmSprog,:FilmAlder,:FilmOprindelsesland, :FilmImg)";
+    $bind=[":FilmNavn"=> $data["FilmNavn"], ":FilmDato"=> $data["FilmDato"], ":FilmBas"=> $data["FilmBas"],":FilmRate"=> $data["FilmRate"], ":FilmGenre"=> $data["FilmGenre"],":FilmMedvirkende"=> $data["FilmMedvirkende"],":FilmTid"=> $data["FilmTid"],":FilmSprog"=> $data["FilmSprog"],":FilmAlder"=> $data["FilmAlder"],":FilmOprindelsesland"=> $data["FilmOprindelsesland"], ":FilmImg"=>(!empty($file["FilmImg"]["tmp_name"]))? $file["FilmImg"]["name"] :NULL ];
     $db->sql($sql, $bind, false);
 
     echo "<body style='font-size: 2rem; background-color: #000000; '></body>
@@ -44,7 +51,7 @@ if(!empty($_POST["data"])){
 
 
     <body class="bg-black">
-    <form method="post" action="insert.php">
+    <form method="post" action="insert.php" enctype="multipart/form-data">
         <div>
             <h1 class="text-light d-flex justify-content-center">
                 IMDB Film
@@ -73,7 +80,12 @@ if(!empty($_POST["data"])){
                     <input class="form-control border-0 rounded-0" type="number" name="data[FilmRate]"  id="FilmRate" placeholder="Rate" value="">
                 </div>
             </div>
-
+            <div class="col-12 col-md-10">
+            <div class="form-group m-2">
+                <label for="FilmImg"> <p class="text-light m-0">Img</p></label>
+                <input class="form-control border-0 rounded-0" type="file" name="FilmImg"  id="FilmImg" placeholder="Img" value="">
+            </div>
+        </div>
             <div class="col-12 col-md-5">
                 <div class="form-group m-2">
                     <label for="FilmGenre"> <p class="text-light m-0">Genre</p></label>
@@ -123,9 +135,9 @@ if(!empty($_POST["data"])){
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 mt-5 ">
+            <div class="col-12 col-md-6 mt-5  mb-5">
                 <div class="d-flex justify-content-center">
-                <button class="form-control btn btn-primary" type="submit" id="btnsubmit">Submit</button></div>
+                <button class="form-control btn btn-primary bg-gradient rounded-0 border-0 " type="submit" id="btnsubmit">Submit</button></div>
             </div>
 
         </div>
