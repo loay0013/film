@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Kim",
+    "age": "77",
+    "image": "kim.jpg",
+    "color": ["red","green"],
+    "hobbies": {
+      "cs": "god",
+      "fifa": "noob"
+    }
+  },
+  {
+    "name": "Loay",
+    "age": "28",
+    "image": "loay.jpg",
+    "color": ["red","green"],
+    "hobbies": {
+      "cs": "noob",
+      "fifa": "god"
+  }
+  }
+]

@@ -1,14 +1,15 @@
 <?php
 require "settings/init.php";
-$data = json_decode(file_get_contents('php//input'), true);
+$data = json_decode(file_get_contents('php://input'), true);
 
 $data['password']= 1717;
 
 
 /*
- * password: skal udfyldes og være KickPhp
- * nameSearch: valgfri
- */
+password: ["skal udfyldes og være KickPhp"];
+nameSearch: ["valgfri"];
+*/
+
 /*
 $header = "HTTP/1.1 400 Bad Request"; // Sending malformed data results in a 400 Bad Request response.
 $header = "HTTP/1.1 401 Unauthorized"; // Trying to access to the API without authentication results in a 401 Unauthorized response.
@@ -19,23 +20,30 @@ $header = "HTTP/1.1 422 Unprocessable Entity"; // Sending invalid data results i
 $header = "HTTP/1.1 200 OK"; // Getting a resource or a collection resources results in a 200 OK response
 $header = "HTTP/1.1 200 Created"; // Creating a resource results in a 201 Created response.
 $header = "HTTP/1.1 200 No Content"; // Updating or deleting a resource results in a 204 No Content response.
- */
+*/
 
 if($data["password"]== "1717"){
     $sql= "SELECT * FROM Film WHERE 1=1";
     $bind=[];
-    if(!empty($data["nameSearch"])){
-        $sql .="AND Filmnavn = :FilmNavn";
-        $bind[":FilmNavn"]= $data["nameSearch"];
+    if(!empty($data["nameSearch"])) {
+        $sql .= "AND FilmNavn LIKE CONCAT ('%',:FilmNavn,'%')";
+        $bind[":FilmNavn"] = $data["nameSearch"];
     }
+        if(!empty($data["raSa"])){
+            $sql .="AND FilmRate LIKE CONCAT ('%',:FilmRate,'%')";
+            $bind[":FilmRate"]= $data["raSa"];
+
+    }
+
+
     $Film =$db->sql($sql,$bind);
     header("HTTP/1.1 200 ok");
 
     echo json_encode($Film);
-} else{
+} else {
     header('content-Type: application/json; charset=utf-8');
     header("HTTP/1.1 401 Unauthorized");
-    $error["errorMassage"]= "Din kodeord var forket";
+    $error["errorMassage"] = "Din kodeord var forket";
     echo json_encode($error);
 }
 

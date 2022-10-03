@@ -1,7 +1,7 @@
 <?php
 require "settings/init.php";
-
-$Films = $db->sql("SELECT * FROM Film WHERE FilmId IN (27)");
+$bind =[":FilmId"=> $_GET["FilmId"]];
+$Films = $db->sql("SELECT * FROM Film WHERE FilmId =:FilmId;", $bind);
 ?>
     <!DOCTYPE html>
     <html lang="da">
@@ -32,10 +32,8 @@ $Films = $db->sql("SELECT * FROM Film WHERE FilmId IN (27)");
 <body class="bg-dark">
     <div class="row">
         <div class="col-12 d-flex justify-content-center mt-md-5 col-md-6 p-0 ">
-            <div class="img1">
-            <?php
-            echo $Film->FilmImg
-            ?>
+            <div>
+                <img src="uplods/<?php echo $Film->FilmImg; ?>" alt="">
             </div>
         </div>
         <div class="col-12 pt-5 col-md-6 mt-5">
