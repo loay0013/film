@@ -30,9 +30,9 @@ $Films = $db->sql("SELECT * FROM Film WHERE FilmId =:FilmId;", $bind);
     </head>
 
 <body class="bg-dark">
-    <div class="row">
+    <div class="row m-0">
         <div class="col-12 d-flex justify-content-center mt-md-5 col-md-6 p-0 ">
-            <div>
+            <div class="">
                 <img src="uplods/<?php echo $Film->FilmImg; ?>" alt="">
             </div>
         </div>

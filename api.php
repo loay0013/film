@@ -26,13 +26,18 @@ if($data["password"]== "1717"){
     $sql= "SELECT * FROM Film WHERE 1=1";
     $bind=[];
     if(!empty($data["nameSearch"])) {
-        $sql .= "AND FilmNavn LIKE CONCAT ('%',:FilmNavn,'%')";
+        $sql .= " AND FilmNavn LIKE CONCAT('%',:FilmNavn,'%')";
         $bind[":FilmNavn"] = $data["nameSearch"];
     }
         if(!empty($data["raSa"])){
-            $sql .="AND FilmRate LIKE CONCAT ('%',:FilmRate,'%')";
+            $sql .=" AND FilmRate  >= :FilmRate";
             $bind[":FilmRate"]= $data["raSa"];
 
+    }
+
+    if(!empty($data["FilmGenre"])){
+        $sql .=" AND FilmGenre  >= :FilmGenre";
+        $bind[":FilmGenre"]= $data["FilmGenre"];
     }
 
 

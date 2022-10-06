@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
     <!-- Titel som ses oppe i browserens tab mv. -->
-    <title >Sigende titel</title>
+    <title >Film</title>
 
     <!-- Metatags der fortæller at søgemaskiner er velkomne, hvem der udgiver siden og copyright information -->
     <meta name="robots" content="All">
@@ -29,16 +29,41 @@
 <div class="container">
     <h1 class="text-light p-4 text-center">IMDB Film</h1>
     <div class="films">
-      <div class="filter p-5">
+      <div class="filter">
         <div class="row">
 
-            <div class="col-md-4 offset-md-4">
-                <div class="d-flex justify-content-center p-5">
-                <input class="raSa" type="range" min="0" max="10" value=""></div>
-                <input type="search" class="form-control nameSearch" placeholder="Søg og du skal find">
+            <div class="col-md-6 offset-md-3">
+                     <input type="search" class="form-control nameSearch " placeholder="Søg og du skal find">
+
+                <div class=" col-12 row d-flex justify-content-center  align-items-center pt-3 m-0 ">
+                <div class="d-flex justify-content-center  pt-0 col-6 row">
+                    <p class="text-light text-center p-0">Rating 0 til 10</p>
+                    <input class="raSa" type="range" id="rating" min="0" max="10" value="0" oninput="ratingDisp.value = rating.value">
+                    <output   class=" text-light raSa" id="ratingDisp">0</output>
+                </div>
+
+
+                    <div class="col-6  d-flex justify-content-center">
+                <label for="FilmGenre"></label>
+
+                <select name="fG" class="FilmGenre">
+                    <option value="0">Vælg en genre</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Action">Action</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Crime">Crime</option>
+                    <option value="Biography">Biography</option>
+                </select>
+                </div>
+                </div>
+                </div>
+                <div class="d-flex justify-content-center p-3 pt-3 ">
+                <a class="btn text-light  bg-light border-1 ps-5 pt-2 pb-2 pe-5 rounded-0 " href="film.html"> <p class="text-center text-dark">Nulstil</p>
+                </a>
+                </div>
             </div>
         </div>
-      </div>
         <div class="items">
 
         </div>

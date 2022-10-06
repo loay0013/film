@@ -11,15 +11,20 @@ export default class Films {
         this.items = this.rootElem.querySelector('.items');
         this.nameSearch = this.filter.querySelector('.nameSearch');
         this.raSa =this.filter.querySelector('.raSa');
+        this.FilmGenre=this.filter.querySelector('.FilmGenre')
     }
 
     async init(){
         this.nameSearch.addEventListener('input',()=>{
-            if ( this.nameSearch.value.length >= 5 ) {
+            if ( this.nameSearch.value.length >= 3 ) {
                 this.render();
             }
         })
         this.raSa.addEventListener('input',()=>{
+            this.render();
+        })
+
+        this.FilmGenre.addEventListener('input',()=>{
             this.render();
         })
 
@@ -40,10 +45,10 @@ export default class Films {
             col.classList.add('col-md-6', 'col-lg-4', 'col-xl-3');
 
             col.innerHTML= `
-             <div class="card h-100 shadow">
-             
-             <img  src ="uplods/${items.FilmImg}" class="card-img-top img-fluid " alt="">
-           
+             <div class="card h-100 shadow border-0  ">
+               <div class="obj">
+             <img   src ="uplods/${items.FilmImg}" class="card-img-top img-fluid" alt="">
+               </div>
             
             
                 <h5 class="cardd-title text-center p-2 ">${items.FilmNavn}</h5>
@@ -52,7 +57,7 @@ export default class Films {
                   ${items.FilmRate}&#9734;| ${items.FilmTid}.Min |+ ${items.FilmAlder}
                 </p>              
                 <div class="d-flex justify-content-center p-3 ">
-                <a href="index.php?FilmId=${items.FilmId}"class="btn  justify-content-center p-2 rounded-0 bg-dark text-light rounded-0 ">læs mere</a></div>
+                <a href="index.php?FilmId=${items.FilmId}"class="btn  justify-content-center rounded-0 bg-dark text-light rounded-0 ps-5 pt-3 pb-3 pe-5 stretched-link ">læs mere</a></div>
              </div>   
              </div>                                           
           `;
@@ -67,7 +72,8 @@ export default class Films {
 
     async getData(){
         this.data.nameSearch =this.nameSearch.value;
-
+         this.data.raSa= this.raSa.value;
+         this.data.FilmGenre = this.FilmGenre.value;
         const response = await fetch('api.php',{
             method: "POST",
             body: JSON.stringify(this.data)
