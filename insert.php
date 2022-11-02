@@ -19,7 +19,9 @@ if(!empty($_POST["data"])){
        <p style='color: white; text-align: center; margin-top: 20%;' >Film er nu indsat.<p/>
        <div style='display: flex; justify-content: center;'>
        <button style='display:flex; justify-content:center; padding: 10px '>
-       <a  style='text-decoration: none; color: black;' href='insert.php' >Indsat en film mere</a></button></div>";
+       <a  style='text-decoration: none; color: black;' href='insert.php' >Indsat en film mere</a></button></div>
+       <a style='display: flex; justify-content: center; color: white; padding-top: 20px; text-decoration: none' href='film.html'>Til Film side</a>
+       ";
     exit;
 }
 ?>

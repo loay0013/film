@@ -32,8 +32,8 @@ $Films = $db->sql("SELECT * FROM Film WHERE FilmId =:FilmId;", $bind);
 <body class="bg-dark">
     <div class="row m-0">
         <div class="col-12 d-flex justify-content-center mt-md-5 col-md-6 p-0 ">
-            <div class="">
-                <img src="uplods/<?php echo $Film->FilmImg; ?>" alt="">
+            <div class="d-flex justify-content-center">
+                <img class="obj" src="uplods/<?php echo $Film->FilmImg; ?>" alt="">
             </div>
         </div>
         <div class="col-12 pt-5 col-md-6 mt-5">
@@ -87,7 +87,13 @@ $Films = $db->sql("SELECT * FROM Film WHERE FilmId =:FilmId;", $bind);
         </div>
 
     </div>
-
+        <div class="d-flex justify-content-center">
+            <a class="btn-primary btn" href="film.html">
+                <p>
+                    Til film side
+                </p>
+            </a>
+        </div>
 
     <?php
 }

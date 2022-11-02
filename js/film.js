@@ -46,8 +46,8 @@ export default class Films {
 
             col.innerHTML= `
              <div class="card h-100 shadow border-0  ">
-               <div class="obj">
-             <img   src ="uplods/${items.FilmImg}" class="card-img-top img-fluid" alt="">
+               <div>
+             <img   src ="uplods/${items.FilmImg}" class="card-img-top img-fluid obj1" alt="">
                </div>
             
             
